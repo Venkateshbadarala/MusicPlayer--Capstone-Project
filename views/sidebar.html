@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,900&family=Oswald:wght@500&family=Roboto+Mono:wght@600&family=Roboto:ital@1&display=swap');
+.navbar{
+            box-sizing: border-box;
+            font-family: 'Merriweather', serif;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto Mono', monospace;
+            top: 0;}
+body{
+  overflow-x: hidden;
+   overflow-y:hidden ;
+background-color: #7300e6;}
+    /* it shows the containers */
+.songcontainer,
+.show2,
+.show1{
+        display: none;}
+.songcontainer1,
+    .hide1,
+    .hide2,
+    .hide3,
+    .hide4,
+    .hide5,
+    .hide6,
+    .hide7,
+    .hide8,
+    .hide9,
+    .hide10,
+    .hide11 {
+        display: none;}
+.songcontainer1.show {
+        display: flex;}
+.songcontainer.show {
+        display: flex;}
+    /* css for side bar */
+.navbar{
+           position:fixed;
+            width: 220px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(35, 37, 37);
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.2s;
+            grid-area: navbar;
+            z-index: 1000;
+            margin-left: -10px;
+            box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5), inset 0px -3px 6px -2px rgba(0, 0, 0, 0.3);
+         color: white;}
+.navbar .logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(255, 21, 21);}
+.navbar .logo .text1{
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;}
+.navbar .logo img{
+    width:30%;
+    object-fit: cover;
+    border-radius: 100%;}
+.nav .menu ul li{
+    list-style-type:none;
+    margin-bottom: 8px;}
+.nav .menu ul li a{
+    text-decoration: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: rgb(252, 253, 254);
+    padding: 1px 8px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    margin-left: -40px;}
+.nav .menu ul li a input{
+  width: 100%;
+  border-radius: 2px;
+  height: 20px;}
+.menu p{
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 10px;}
+.menu ul li a:hover,
+.menu ul li .active a{
+    color: rgb(10, 7, 7);
+    background-color: #edeaea;}
+.arrow{
+    position:absolute;
+    right: -14px;
+    top: 3.5%;
+    height: 28px;
+    width: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #757575;
+    border: 2px solid #f6f6f6;
+    background-color: #fff;}
+.arrow:hover i{
+    color: rgb(248, 10, 10);}
+/* active for sidebar */
+.navbar.active{
+    width: 92px;}
+.navbar.active .arrow{
+    transform: rotate(180deg);}
+.navbar.active .text{
+    display: none;}
+.navbar.active .logo img{
+    width: 40px;}
+.navbar.active .nav .menu ul li a{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+.navbar.active .nav .menu ul li a .text2{
+position: absolute;
+left: 50px;
+border-radius: 4px;
+padding: 3px;
+font-size: 10px;
+color: #edeaea;
+background-color: black;
+visibility: hidden;}
+.navbar.active .nav .menu ul li a input{
+  visibility: hidden;}
+.navbar.active  .menu ul li a i:hover{
+    color: black;}
+.navbar.active  .menu ul li a i{
+   display: flex;
+   justify-content: center;
+    gap: 10px;
+    align-items: center;
+    color: rgb(241, 244, 246);
+    padding: 13px 6px;
+    border-radius: 8px;
+    transition: all 0.3s;}
+.navbar.active  .menu ul li a:hover .text2{
+   visibility: visible;}
+.navbar.active .nav .menu .text3{
+    font-size: 10px;}
+.navbar .text4{
+    display: flex;
+    font-size: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(157, 153, 153);
+    margin-left: -40px;}
+.navbar .text3{
+    display: flex;
+    font-size: 15px;
+    flex-direction: row;
+    align-items: center;
+    gap: 0px;
+    padding-top: 10px;
+    padding-bottom: 8px;}
+.nav1{
+    position: absolute;
+    bottom: 0;}
+/* container of navigation bar and songcontainer */
+.container{
+display: grid;
+height: 0vh;
+grid-template-columns:0.1fr 1fr  1fr 1fr ;
+grid-template-rows: 0.1fr 1fr  2fr  1fr;
+grid-template-areas:
+"navbar navigation1 navigation1 navigation1"
+"navbar container1 container1 container1"}
+  
+/* navigation css block */
+.navigation1{
+   margin-top: -2%;
+    grid-area: navigation1;
+    background-color: rgb(24, 23, 23);
+    color: white;
+   top: 0;
+    height: 100px;
+   box-shadow: 0px 2px 2px 0px rgba(238, 5, 5, 0.5), inset 0px -3px 6px -2px rgba(0, 0, 0, 0.3);}
+.navigation{
+ position:sticky;
+   width: 100%;
+  display: grid;
+   grid-template-columns: 6fr 3fr;
+   grid-template-areas: "timer checkbox";
+   align-items: center;
+   padding: 20px;
+   border-radius: 4px;
+   grid-area: navigation;}
+  /* small view  */
+ @media only screen and (max-width: 600px){
+ 
+.navigation1{
+  display: flex;
+  height: 150px;
+}
+            .navigation {
+                grid-template-columns: 1fr; 
+                grid-template-rows: auto auto; 
+                grid-template-areas: "checkbox" "timer";
+                justify-content: center;
+                padding: 10px; 
+               margin-left: 20%;
+            }
+            .side input{
+              display: flex;
+              height: 20px;
+            }
+           
+
+            .checkbox {
+              display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: 100%; 
+                gap: 10px;
+              justify-content: center;
+            }
+
+            .checkbox input {
+                width: 100%;
+                padding: 5px; 
+               
+            }
+            .side i {
+                margin-top: 0; 
+                margin-right: 5px;
+            }
+            .side {
+              display: flex;
+                align-items: center;
+            }
+            .toggle{
+              display: flex;
+              align-items: center;
+            }
+        }
+  /* greeting block */
+#greet{
+    font-size: 25px;
+    font-family: 'Merriweather', serif;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    margin-left: 25%;
+    cursor: pointer;}
+.checkbox ul li a {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #f0e9e9;
+            padding: 10px 15px;
+            border-radius: 50px;
+            transition: background-color 0.2s;
+            font-family: 'Oswald', sans-serif;}
+.checkbox .side form ul li{
+            list-style-type: none;
+            display: inline-block;
+            padding: 3px 5px;}
+
+
+/* toggle block code */
+label{
+    width: 40px;
+    height: 20px;
+    background: #f3f8f8;
+    border-radius: 20px;
+    position: absolute;}
+label span{
+    width: 20px;
+    height: 20px;
+    background: #3606f7;
+    border-radius: 50%;
+    transition: margin-left 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;}
+#bbt{
+    opacity: 0;}
+#bbt:checked + label span{
+    margin-left: 20px;
+    background:#1905f7 ;}
+    /* input box in navigation bar */
+.checkbox{
+    display: flex;
+    align-items: center;
+   gap: 20%;}
+.side i{
+  position: absolute;
+  margin-top: 10px;
+color: #c40c0c;}
+.side input{
+  display: flex;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  box-shadow: -5px -5px 10px 0px rgba(255, 255, 255, 0.5), 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+border: none;}
+.side input:focus{
+    border: 2px solid white;}
+       /* songcontainer css view */
+
+/* body color change css  */
+:root{
+  --gradient:linear-gradient(to top,#7300e6, black);}
+.dark{
+  --gradient: linear-gradient(to right, #ef904c, #090609);}
+ /* main songs view */
+.container1 {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            grid-area: container1;
+           background: var(--gradient);
+            height: 100vh;
+            width: 100vw;
+            background-size: cover;
+        }
+
+        /* responsive sliding songs list */
+        .top-container {
+            width: 100%;
+            height: 40vh;
+           top: 2%;
+            overflow: hidden;
+            position: relative;
+            margin-left: 1%;}
+        .popularsongs {
+            width: 90%;
+            margin: 15px auto;}
+        .popularsongs .h4 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: -2%;}
+        .popularsongs .h4  h2{
+           color: #f3f8f8;}
+        .popularsongs .h4 .bx {
+            color: rgb(66, 116, 116);
+            cursor: pointer;
+            transition: .3s linear;
+            font-size: 20px;}
+        .popularsongs .h4 .bx:hover {
+            color: rgb(249, 245, 245);}
+        .popularsongs .top-list {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;}
+        .popularsongs .top-list::-webkit-scrollbar {
+            display: none;}
+        .popularsongs .top-list li {
+            min-width: 250px;
+            height: 190px;
+            list-style-type: none;
+            margin-right: 10px;
+            transition: .3s linear;}
+        .popularsongs .top-list li:hover {
+            background: rgb(105, 105, 170, .1);}
+        .popularsongs .top-list li .img-play a {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;}
+        .popularsongs .top-list li .img-play img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            box-shadow: -5px -5px 10px 0px rgba(255, 255, 255, 0.5), 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;}
+        .popularsongs .top-list li .img-play h5 {
+            margin-top: 10PX;
+            font-size: 15px;
+            display: flex;
+            text-align: center;
+            justify-content: center;}
+
+            /* small Two containers */
+        .songcontainer {
+         display: grid;
+         height: 35vh;
+         grid-template-columns: repeat(4, 1fr);
+         grid-template-rows:1fr 1fr 1fr 1fr ;
+         grid-template-areas:
+        "main1 main1 main2 main2";
+         grid-gap: 20px;
+         }
+/* small container1 */
+        .small-container {
+           display: flex;
+           align-items: center;
+           justify-content:center ;
+           flex-direction: row;
+          margin-left: 20%;
+         margin-top: 3%;
+          grid-area: main1;
+          height: 90%;
+           }
+ /* smallcontainer2 */
+         .small-container1{
+          display: flex;
+           align-items: center;
+           justify-content:center ;
+           flex-direction: row;
+           grid-area: main2;
+          height: 80%;
+        }
+/* scroll overfow hidden */
+        .small-container::-webkit-scrollbar{
+            display: none;
+        }
+/*css for arranging the songs  */
+        .main-list2{
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        height: 20%;
+        overflow-y: scroll;}
+        .main-list2 .songs {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            min-height: 58px;
+            background-color: grey;
+           justify-content: center;
+            padding: 5px ;
+            border-radius: 5px;
+            box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+          width: 500px;}
+        .main-list2 .songs .image img {
+            width: 60px;
+            height: 100%;}
+        .main-list2 .songs .audio audio {
+            height: 25px;
+            background: none;
+            width:210px;}
+        .main-list2 .songs p {
+            text-transform: uppercase;
+            margin: 0;}
+        .main-list2{
+            column-gap: 10%;} 
+        .list-main2 .main-list2{
+            width: 100%;
+            height: 350px;
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;}
+        .list-main2 .main-list2::-webkit-scrollbar {
+            display: none;}
+        .main-list2{
+            column-gap: 10%;} 
+        .p1{
+            font-size: 20px;
+            display: flex;
+             align-items: center;
+             font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 900;
+              color: white;}
+            
+              /* artists container css */
+             
+        .artists li{
+            list-style-type: none;}
+        .artists li .img-play1 a img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            box-shadow: -5px -5px 10px 0px rgba(255, 255, 255, 0.5), 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;}
+        .artists li .img-play1 a {
+            width: 100px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;}
+        .artists li .img-play1 a:hover{
+          width: 150px;
+          transition: 0.6s; }
+        .artists li .img-play1 h5 {
+            margin-top:15px ;
+            font-size: 20px;
+            display: flex;
+            text-align: center;
+            justify-content: center;}
+        .artists{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content:center;
+            gap: 5px;}
+      
+            /* website view in small screens */
+
+@media screen and (max-width: 1250px) {
+  body{
+    overflow-y: visible;}
+.container1{
+ background-size: cover;
+ height: 100%;}
+.container {
+              display: grid;
+              height: 0vh;
+              grid-template-columns:1fr 1fr 1fr 1fr;
+              grid-template-rows: repeat(5,auto);
+              grid-template-areas:
+                  "navbar navigation1 navigation1 navigation1"
+                   "navbar container1 container1 container1";}
+.top-container{
+  display: flex;
+  margin-left: 10%;}
+.popularsongs .h4 {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: -2%;
+            gap: 28%;}
+.songcontainer {
+           display: grid;
+           grid-template-columns: 1fr;
+           grid-template-rows: repeat(7, auto);
+           grid-template-areas:
+            "main1"
+            "main2";}
+.small-container{
+  display: flex;
+  margin-right: 15%;
+  margin-top: 8%;}
+.artists li .img-play1  {
+          width: 68px;}
+.artists li .img-play1 a img:hover {
+         z-index: 9999;
+        transition: all 0.1s;}
+.img-play1 h5{
+ visibility: hidden;}
+.small-container1{
+display: flex;
+
+margin-left: 8%;
+margin-top: 2%;}
+.list-main2 .main-list2{
+            width: 120%;
+            height: 300px;
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;}
+.main-list2 .songs{
+          width: 100%;}}
+
+ /* box shadow of the containers  */
+      .show3{
+        box-shadow: -5px -5px 10px 0px rgba(70, 169, 212, 0.5), 5px 5px 10px 0px rgba(5, 150, 247, 0.3);
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 20px;}
+      h5{
+        color: white;
+        font-size: 10px;}
+
+</style>
+</head>
+<body>
+  
+    <div class="container">
+      <!-- sidebar bar block -->
+<div class="navbar active">
+    <div class="arrow">
+        <i class='bx bxs-chevron-left'></i>
+    </div>
+    <form action="/print">
+    <div class="logo">
+       <img src="/photos/venkatesh2.jpg">
+     <div class="text">
+       <p class="text1">Developer</p>
+        <p>Venkatesh</p>
+    </div>
+   </div></form>
+   <div class="nav">
+    <div class="menu">
+        <p class="text3">Main</p>
+       <ul>
+        <li class="active">
+            <a href="#">
+                <i class='bx bx-user'></i>
+                <p class="text2">profile</p>
+            </a>
+          </li>
+          <form action="/dashboard1">
+        <li class="active">
+            <a href="#">
+                <i class='bx bxs-category'></i>
+                <p class="text2">Dashboard</p>
+            </a>
+          </li>
+        </form>
+          <li class="active">
+            <a href="#" class="toggle-link1" data-target="mDIV6">
+                <i class='bx bxs-playlist'></i>
+                <p class="text2">Most Played</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="#" class="toggle-link1" data-target="mDIV7">
+                <i class='bx bx-like'></i>
+                <p class="text2">Most Liked</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="#" class="toggle-link1" data-target="mDIV8">
+                <i class='bx bx-user-pin'></i>
+                <p class="text2">Artist</p>
+            </a>
+           </li>
+<div class="nav1">
+      <p class="text4">Accounts</p>
+     
+      <li class="active">
+        <form action="/logout" method="post">
+        <a href="login">
+            <i class='bx bx-exit'></i>
+            <p class="text2">Logout</p>
+        </a>
+      </form>
+      </li>
+       </ul>
+    </div>
+    </div>
+    </div>
+    <!-- navigation block -->
+<div class="navigation1">
+<div class="navigation ">
+    <div class="timer">
+         <p id="greet"></p>
+        </div>
+        <div class="checkbox">
+          <div class="toggle">
+            <input  type="checkbox" id="bbt" >
+        <label for="bbt"><span></span></label> </div>
+        <div class="side">
+          <i class='bx bx-search-alt'></i> 
+          <input  type="text" placeholder="Search" >
+    </div> 
+        </div> 
+      </div>
+        </div>
+        <!-- container for songs -->
+<div class="container1" id="theme">
+      <!-- container for songs lists -->
+<div class="top-container">
+                <div class="popularsongs">
+                    <div class="h4">
+                        <h2>Popular List</h2>
+                        <div class="btn">
+                            <i class='bx bxs-chevron-left' id="left_scroll"></i>
+                            <i class='bx bxs-chevron-right' id="right_scroll"></i>
+                        </div>
+                    </div>
+                    <div class="top-list" id="top-list">
+                        <li class="songitems">
+                            <div class="img-play">
+                                <a href="#" class="toggle-link" data-target="myDIV"><img src="https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"></a>
+                                <h5>ROMANTIC LIST</h5>
+                            </div>
+                            
+                        </li>
+                        <li class="songitems">
+                            <div class="img-play">
+                                <a href="#" class="toggle-link" data-target="myDIV1"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80"></a>
+                                <h5>MASS LIST</h5>
+                            </div>
+                            
+                        </li>
+                        <li class="songitems">
+                            <div class="img-play">
+                                <a href="#" class="toggle-link" data-target="myDIV2"><img src="https://yt3.googleusercontent.com/FMsGhQBEYaNR3Gzdw-8lfL2gkZ6B7pgGhWEdfS66YDt2a_R4iWcF3t79J_S6ULCbxmYN7Tu-=s900-c-k-c0x00ffffff-no-rj"></a>
+                                <h5>BGM</h5>
+                            </div>
+                            
+                        </li>
+                        <li class="songitems">
+                            <div class="img-play">
+                                <a href="#" class="toggle-link" data-target="myDIV8"><img src="https://c.saavncdn.com/183/8d-Best-Of-Bollywood-Hindi-2020-20201209232741-500x500.jpg"></a>
+                                <h5>BOLLYWOOD</h5>
+                            </div>
+                            
+                        </li>
+                        <li class="songitems">
+                            <div class="img-play">
+                                <a href="#" class="toggle-link" data-target="myDIV9"><img src="https://static.mytuner.mobi/media/tvos_radios/KBR7VKBg3Q.jpeg"></a>
+                                <h5>TAMIL</h5>
+                            </div>
+                            
+                        </li>
+                        <li class="songitems">
+                            <div class="img-play">
+                                <a href="#" class="toggle-link" data-target="myDIV10"><img src="https://c.saavncdn.com/editorial/logo/2000sRomanceTelugu_20210521173032.jpg"></a>
+                                <h5>OLD LIST</h5>
+                            </div>
+                            
+                        </li>
+                        
+                    </div>
+                </div>
+            </div>
+   <!-- Two containers  -->
+<div class="songcontainer">
+               <!-- container1 -->
+<div class="small-container">
+<div class="show1" id="mDIV6">
+  <div class="Lovesongs">
+      <div class="list-main2">
+          <p class="p1">MOST PLAYED SONGS</p>
+          <div class="main-list2">
+              <div class="songs">
+                  <div class="image">
+                      <img src="https://www.thetelugufilmnagar.com/wp-content/uploads/2022/11/mastaaru-mastaaru-song-out-now.webp" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>MASTERU....</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/Mastaaru Mastaaru.mp3" controls></audio>
+                  </div>
+              </div>
+              
+              <div class="songs">
+                  <div class="image">
+                      <img src="https://naasongs24.com/wp-content/uploads/2022/01/Tillu-Anna-DJ-Pedithe.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>DJ Tillu</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/Tillu Anna DJ Pedithe.mp3" controls></audio>
+                  </div>
+              </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://www.ilyricshub.com/wp-content/uploads/2023/05/na-roja-nuvve-kushi.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>  Kushi..........</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Kushi.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/RAcYhpcpzvE/mqdefault.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>  Prema o pr</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Prema O Premaa.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.scdn.co/image/ab67616d0000b2735f9267051b18ae6f8184276a" alt="Song 1">
+              </div>
+              <div class="name">
+                <p> Boyfriend </p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element"
+                  src="songs/Main Tera Boyfriend.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://static.india.com/wp-content/uploads/2022/01/pjimage-2022-01-17T131217.775.jpg?impolicy=Medium_Resize&w=1200&h=800" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>Oo.antava</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Oo Antava..Oo Oo Antava.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/EpkAm8oID1I/maxresdefault.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>UrimecUri</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Urime Manase.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBs5yqHRO_4B0H4bKfZwf8zORg10FzA_FE6w&usqp=CAU" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>  eyybidd.</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Eyy Bidda Idhi Naa Adaa.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                      <img src="https://st1.bollywoodlife.com/wp-content/uploads/2023/08/Jailer-14.png?impolicy=Medium_Widthonly&w=412&h=290" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>HUKUM</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/hukum.mp3" controls></audio>
+                  </div>
+              </div>
+              <div class="songs">
+                  <div class="image">
+                      <img src="https://static.toiimg.com/photo/msid-89585821/89585821.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>Arabic kuthu</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/Arabic Kuthu.mp3" controls></audio>
+                  </div>
+              </div>
+              <div class="songs">
+                  <div class="image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDl3f8C9rXjO7GNzaAgLXZKcxTpZYDlThGqQT093czHJK3uUcN7I-cDuZuc9qR46lUeyU&usqp=CAU" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>Gundellona</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/[iSongs.info] 03 - Gundellonaa.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/NwMaEv8qpOk/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAKNIf265MPleiD0_NAGL9XMekxkA" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>Naa madhi</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/[iSongs.info] 02 - Naa Madhi.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                      <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/1613122289/srch_adityamusic_INA092117398.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>ye kannulu</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/[iSongs.info] 01 - Ye Kannulu Choodani.mp3" controls></audio>
+                  </div>
+              </div>
+              <div class="songs">
+                  <div class="image">
+                <img src="https://www.koimoi.com/wp-content/new-galleries/2022/02/mahesh-babu-keerthy-sureshs-romantic-number-kalavathi-tumbling-records-01.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>kavalathi</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Kalaavathi.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                      <img src="https://i.ytimg.com/vi/u_2ariWW8K0/hqdefault.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>Thattukoled.</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/[iSongs.info] 01 - Thattukolede.mp3" controls></audio>
+                  </div>
+              </div>
+              <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/G50s92nDHaA/maxresdefault.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p> mowa  bro </p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/[iSongs.info] 02 - Mawa Bro.mp3" controls></audio>
+              </div>
+                </div>
+              </div>
+              </div>
+      
+          </div>
+</div>
+<div class="show2" id="mDIV7">
+<div class="Lovesongs">
+    <div class="list-main2">
+        <p class="p1">MOST LIKED SONGS</p>
+        <div class="main-list2">
+            <div class="songs">
+                <div class="image">
+                    <img src="https://naasongs24.com/wp-content/uploads/2022/01/Tillu-Anna-DJ-Pedithe.jpg" alt="Song 1">
+                </div>
+                <div class="name">
+                    <p>DJ Tillu</p>
+                </div>
+                <div class="audio">
+                    <audio class="audio-element" src="songs/Tillu Anna DJ Pedithe.mp3" controls></audio>
+                </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+                    <img src="https://www.thetelugufilmnagar.com/wp-content/uploads/2022/11/mastaaru-mastaaru-song-out-now.webp" alt="Song 1">
+                </div>
+                <div class="name">
+                    <p>MASTERU....</p>
+                </div>
+                <div class="audio">
+                    <audio class="audio-element" src="songs/Mastaaru Mastaaru.mp3" controls></audio>
+                </div>
+            </div>
+          
+          
+            <div class="songs">
+                <div class="image">
+              <img src="https://www.ilyricshub.com/wp-content/uploads/2023/05/na-roja-nuvve-kushi.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>  Kushi..........</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/Kushi.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+                    <img src="https://static.toiimg.com/photo/msid-89585821/89585821.jpg" alt="Song 1">
+                </div>
+                <div class="name">
+                    <p>Arabic kuthu</p>
+                </div>
+                <div class="audio">
+                    <audio class="audio-element" src="songs/Arabic Kuthu.mp3" controls></audio>
+                </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://c.saavncdn.com/556/Sulthana-From-Kgf-Chapter-2--Telugu-2022-20220413121011-500x500.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>sulthan</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/Sulthana.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://img.wynk.in/unsafe/320x180/top/http://s3.ap-south-1.amazonaws.com/wynk-music-cms/srch_saregama/20230309100530000/8907212005809/1678337524918/resources/8907212005809.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p> chemiki kannu</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element"
+                src="songs/Chemiki Kannu.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://i.ytimg.com/vi/RAcYhpcpzvE/mqdefault.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>  Prema o pr</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/Prema O Premaa.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://i.scdn.co/image/ab67616d0000b2735f9267051b18ae6f8184276a" alt="Song 1">
+            </div>
+            <div class="name">
+              <p> Boyfriend </p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element"
+                src="songs/Main Tera Boyfriend.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://i.ytimg.com/vi/EpkAm8oID1I/maxresdefault.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>UrimecUri</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/Urime Manase.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaBM3-VKeveeD5JdeA5rBAmgu7aby17F8-S7nSVPz4rJ1vRpk8dpCpDLZwbOAwrHrf2Js&usqp=CAU" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>Emo Emo</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/[iSongs.info] 04 - Emo Emo.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://naasongs.to/wp-content/uploads/2022/07/Brahmastra-Telugu-2022-Kumkumala.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>  kumkumala</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/[iSongs.info] 01 - Kumkumala.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://naasongslyrics.com/wp-content/uploads/2021/08/taxiwala_ringtones-and-bgm-300x210.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p> maate vind.. </p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/[iSongs.info] 01 - Maate Vinadhuga.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+                    <img src="https://i.ytimg.com/vi/u_2ariWW8K0/hqdefault.jpg" alt="Song 1">
+                </div>
+                <div class="name">
+                    <p>Thattukoled.</p>
+                </div>
+                <div class="audio">
+                    <audio class="audio-element" src="songs/[iSongs.info] 01 - Thattukolede.mp3" controls></audio>
+                </div>
+            </div>
+          
+            <div class="songs">
+                <div class="image">
+              <img src="https://img.wynk.in/unsafe/200x200/filters:no_upscale():strip_exif():format(jpg)/http://s3.ap-south-1.amazonaws.com/wynk-music-cms/srch_adityamusic/2023-02/20/09-34/Balagam.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>potti  pilla</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/[iSongs.info] 02 - Potti Pilla.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/Raghuvaran%20B%20Tech.JPG" alt="Song 1">
+            </div>
+            <div class="name">
+              <p>chudandisaa.</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/[iSongs.info] 01 - Chudandi Saaru.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://i.ytimg.com/vi/G50s92nDHaA/maxresdefault.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p> mowa  bro </p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element" src="songs/[iSongs.info] 02 - Mawa Bro.mp3" controls></audio>
+            </div>
+            </div>
+            <div class="songs">
+                <div class="image">
+              <img src="https://i.ytimg.com/vi/cePCCi5k7WE/maxresdefault.jpg" alt="Song 1">
+            </div>
+            <div class="name">
+              <p> Neeve na..</p>
+            </div>
+            <div class="audio">
+                <audio  class="audio-element"
+                src="songs/[iSongs.info] 01 - Neeve.mp3" controls></audio>
+            </div>
+            </div>
+            
+            </div>
+    
+        </div>
+</div>
+</div>
+<div class="show3" id="mDIV8">
+  <p class="p1">ARTIST</p>
+  <div class="artists">
+  <li class="songitems1">
+      <div class="img-play1">
+          <a href="#" class="toggle-link" data-target="myDIV5"><img src="https://pbs.twimg.com/media/FcTuDdsagAIpX3f.jpg"></a>
+          <h5>Ram </h5>
+      </div>
+      
+  </li>
+  <li class="songitems1">
+      <div class="img-play1">
+          <a href="#" class="toggle-link" data-target="myDIV4"><img src="https://static.tutorialandexample.com/biography/sid-shriram1.png"></a>
+          <h5>Sid</h5>
+      </div>
+      
+  </li>
+  <li class="songitems1">
+      <div class="img-play1">
+          <a href="#" class="toggle-link" data-target="myDIV3"><img src="https://pbxt.replicate.delivery/OjbNT3QJpQYYNJJXeYBw5ym6ogFw4v5L5SfUTYDz3DruXPgRA/output.png"></a>
+          <h5>Anirudh</h5>
+      </div>
+      
+  </li>
+  <li class="songitems1">
+      <div class="img-play1">
+          <a href="#" class="toggle-link" data-target="myDIV11"><img src="https://static.toiimg.com/photo/83205902.cms"></a>
+          <h5>BALU</h5>
+      </div>
+      
+  </li>
+  <li class="songitems1">
+      <div class="img-play1">
+          <a href="#" class="toggle-link" data-target="myDIV12"><img src="https://pbxt.replicate.delivery/FJLE4uwx6SpIGhZFZbSqfd6oVVEMMZMBxjH62Z89QX7XqHwIA/output.png"></a>
+          <h5>DSP</h5>
+      </div>
+      
+  </li>
+  <li class="songitems1">
+      <div class="img-play1">
+          <a href="#" class="toggle-link" data-target="myDIV13"><img src="https://m.media-amazon.com/images/M/MV5BMjE1NjMxMDUyM15BMl5BanBnXkFtZTgwODMzNDM1NTE@._V1_.jpg"></a>
+          <h5>JB</h5>
+      </div>
+      
+  </li>
+
+</div>
+</div>
+</div>
+<!-- small-container2 -->
+<div class="small-container1">
+<div class="hide" id="myDIV">
+  <div class="Lovesongs">
+      <div class="list-main2">
+          <p class="p1">ROMANTIC SONGS</p>
+          <div class="main-list2">
+              <div class="songs">
+                  <div class="image">
+                      <img src="https://www.thetelugufilmnagar.com/wp-content/uploads/2022/11/mastaaru-mastaaru-song-out-now.webp" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>MASTERU....</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="/songs/Mastaaru Mastaaru.mp3" controls></audio>
+                  </div>
+              </div>
+              
+              <div class="songs">
+                  <div class="image">
+                <img src="https://sensongs.co/wp-content/uploads/2020/02/Guna-369-2019-jpeg.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>parichaya</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="/songs/song2.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://www.ilyricshub.com/wp-content/uploads/2023/05/na-roja-nuvve-kushi.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>  Kushi..........</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="/songs/Kushi.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/RAcYhpcpzvE/mqdefault.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>  Prema o pr</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Prema O Premaa.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.scdn.co/image/ab67616d0000b2735f9267051b18ae6f8184276a" alt="Song 1">
+              </div>
+              <div class="name">
+                <p> Boyfriend </p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element"
+                  src="songs/Main Tera Boyfriend.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/EpkAm8oID1I/maxresdefault.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>UrimecUri</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Urime Manase.mp3" controls></audio>
+              </div>
+                </div>
+              </div>
+              </div>
+      
+          </div>
+</div>
+<div class="hide1" id="myDIV1">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">Beat songs</p>
+<div class="main-list2">
+  <div class="songs">
+      <div class="image">
+          <img src="https://naasongs24.com/wp-content/uploads/2022/01/Tillu-Anna-DJ-Pedithe.jpg" alt="Song 1">
+      </div>
+      <div class="name">
+          <p>DJ Tillu</p>
+      </div>
+      <div class="audio">
+          <audio class="audio-element" src="/songs/Tillu Anna DJ Pedithe.mp3" controls></audio>
+      </div>
+  </div>
+  
+  <div class="songs">
+      <div class="image">
+    <img src="https://static.toiimg.com/thumb/msid-88211690,width-1280,resizemode-4/88211690.jpg" alt="Song 1">
+  </div>
+  <div class="name">
+    <p>oantava</p>
+  </div>
+  <div class="audio">
+      <audio  class="audio-element" src="/songs/Oo Antava..Oo Oo Antava.mp3" controls></audio>
+  </div>
+    </div>
+    <div class="songs">
+      <div class="image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBs5yqHRO_4B0H4bKfZwf8zORg10FzA_FE6w&usqp=CAU" alt="Song 1">
+  </div>
+  <div class="name">
+    <p>  eyybidd.</p>
+  </div>
+  <div class="audio">
+      <audio  class="audio-element" src="/songs/Eyy Bidda Idhi Naa Adaa.mp3" controls></audio>
+  </div>
+    </div>
+    <div class="songs">
+      <div class="image">
+    <img src="https://www.naasongs.co/wp-content/uploads/2021/12/Pushpa-The-Raise-2021-Telugu.jpg" alt="Song 1">
+  </div>
+  <div class="name">
+    <p>  daakko </p>
+  </div>
+  <div class="audio">
+      <audio  class="audio-element" src="/songs/Daakko Daakko Meka.mp3" controls></audio>
+  </div>
+    </div>
+    <div class="songs">
+      <div class="image">
+    <img src="https://www.naasongs.co/wp-content/uploads/2023/02/Dasara-Telugu-2023.jpg" alt="Song 1">
+  </div>
+  <div class="name">
+    <p> dhoom</p>
+  </div>
+  <div class="audio">
+      <audio  class="audio-element"
+      src="songs/Dhoom Dhaam.mp3" controls></audio>
+  </div>
+    </div>
+    <div class="songs">
+      <div class="image">
+    <img src="https://c.saavncdn.com/556/Sulthana-From-Kgf-Chapter-2--Telugu-2022-20220413121011-500x500.jpg" alt="Song 1">
+  </div>
+  <div class="name">
+    <p>sulthan</p>
+  </div>
+  <div class="audio">
+      <audio  class="audio-element" src="songs/Sulthana.mp3" controls></audio>
+  </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+</div>
+<div class="hide2" id="myDIV2">
+<div class="Lovesongs">
+<div class="list-main2">
+  <p class="p1">BGM</p>
+  <div class="main-list2">
+      <div class="songs">
+          <div class="image">
+              <img src="https://st1.bollywoodlife.com/wp-content/uploads/2023/08/Jailer-14.png?impolicy=Medium_Widthonly&w=412&h=290" alt="Song 1">
+          </div>
+          <div class="name">
+              <p>HUKUM</p>
+          </div>
+          <div class="audio">
+              <audio class="audio-element" src="songs/hukum.mp3" controls></audio>
+          </div>
+      </div>
+      
+      <div class="songs">
+          <div class="image">
+        <img src="https://imgeng.jagran.com/images/2023/aug/BRO%20Box%20Office%20Collection%20day%20111691469017747.jpg" alt="Song 1">
+      </div>
+      <div class="name">
+        <p>BRO</p>
+      </div>
+      <div class="audio">
+          <audio  class="audio-element" src="songs/Theme-of-BRO-BGM.mp3" controls></audio>
+      </div>
+        </div>
+        <div class="songs">
+          <div class="image">
+        <img src="https://c.saavncdn.com/556/Sulthana-From-Kgf-Chapter-2--Telugu-2022-20220413121011-500x500.jpg" alt="Song 1">
+      </div>
+      <div class="name">
+        <p>  KGF2</p>
+      </div>
+      <div class="audio">
+          <audio  class="audio-element" src="songs/BGM Idd BGM.mp3" controls></audio>
+      </div>
+        </div>
+        <div class="songs">
+          <div class="image">
+        <img src="data:image/jpeg;base64,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" alt="Song 1">
+      </div>
+      <div class="name">
+        <p> Jawan</p>
+      </div>
+      <div class="audio">
+          <audio  class="audio-element" src="songs/Jawan Trailer Bgm Ringtone (BgmSquad.net).mp3" controls></audio>
+      </div>
+        </div>
+        <div class="songs">
+          <div class="image">
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202209/KamalVikram100days_1200x768.jpeg?VersionId=xjwaUlus3EIzRh_I8KhnVbKTD0Z_Z0HR" alt="Song 1">
+      </div>
+      <div class="name">
+        <p> dhoom</p>
+      </div>
+      <div class="audio">
+          <audio  class="audio-element"
+          src="songs/Lokiverse Bgm Ringtone (BgmSquad.net).mp3" controls></audio>
+      </div>
+        </div>
+        <div class="songs">
+          <div class="image">
+        <img src="https://static.toiimg.com/photo/100093399.cms" alt="Song 1">
+      </div>
+      <div class="name">
+        <p>sulthan</p>
+      </div>
+      <div class="audio">
+          <audio  class="audio-element" src="songs/Kushi.mp3" controls></audio>
+      </div>
+        </div>
+      </div>
+      </div>
+
+  </div>
+</div>
+<div class="hide3" id="myDIV3">
+<div class="Lovesongs">
+      <div class="list-main2">
+          <p class="p1">ANIRUDH</p>
+          <div class="main-list2">
+              <div class="songs">
+                  <div class="image">
+                      <img src="https://static.toiimg.com/photo/msid-89585821/89585821.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                      <p>Arabic kuthu</p>
+                  </div>
+                  <div class="audio">
+                      <audio class="audio-element" src="songs/Arabic Kuthu.mp3" controls></audio>
+                  </div>
+              </div>
+              
+              <div class="songs">
+                  <div class="image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDl3f8C9rXjO7GNzaAgLXZKcxTpZYDlThGqQT093czHJK3uUcN7I-cDuZuc9qR46lUeyU&usqp=CAU" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>Gundellona</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/[iSongs.info] 03 - Gundellonaa.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://naasongslyrics.com/wp-content/uploads/2023/07/Va-nuvvu-Kaavalayya-Song-Download-Naa-Songs-Jailer-2023.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p> kaavala....</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Kaavaalaa.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://southmp3.org/wp-content/uploads/2022/05/Vaarasudu-2022.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>  chimki ponnu </p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/Chemiki Kannu.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://img.wynk.in/unsafe/320x180/top/http://s3.ap-south-1.amazonaws.com/wynk-music-cms/srch_saregama/20230309100530000/8907212005809/1678337524918/resources/8907212005809.jpg" alt="Song 1">
+              </div>
+              <div class="name">
+                <p> chemiki kannu</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element"
+                  src="songs/songs/Chamkeela Angeelesi.mp3" controls></audio>
+              </div>
+                </div>
+                <div class="songs">
+                  <div class="image">
+                <img src="https://i.ytimg.com/vi/NwMaEv8qpOk/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAKNIf265MPleiD0_NAGL9XMekxkA" alt="Song 1">
+              </div>
+              <div class="name">
+                <p>Naa madhi</p>
+              </div>
+              <div class="audio">
+                  <audio  class="audio-element" src="songs/[iSongs.info] 02 - Naa Madhi.mp3" controls></audio>
+              </div>
+                </div>
+              </div>
+              </div>
+      
+          </div>
+</div>
+<div class="hide4" id="myDIV4">
+<div class="Lovesongs">
+          <div class="list-main2">
+              <p class="p1">Sid sriram</p>
+              <div class="main-list2">
+                  <div class="songs">
+                      <div class="image">
+                          <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/1613122289/srch_adityamusic_INA092117398.jpg" alt="Song 1">
+                      </div>
+                      <div class="name">
+                          <p>ye kannulu</p>
+                      </div>
+                      <div class="audio">
+                          <audio class="audio-element" src="songs/[iSongs.info] 01 - Ye Kannulu Choodani.mp3" controls></audio>
+                      </div>
+                  </div>
+                  
+                  <div class="songs">
+                      <div class="image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaBM3-VKeveeD5JdeA5rBAmgu7aby17F8-S7nSVPz4rJ1vRpk8dpCpDLZwbOAwrHrf2Js&usqp=CAU" alt="Song 1">
+                  </div>
+                  <div class="name">
+                    <p>Emo Emo</p>
+                  </div>
+                  <div class="audio">
+                      <audio  class="audio-element" src="songs/[iSongs.info] 04 - Emo Emo.mp3" controls></audio>
+                  </div>
+                    </div>
+                    <div class="songs">
+                      <div class="image">
+                    <img src="https://naasongs.to/wp-content/uploads/2022/07/Brahmastra-Telugu-2022-Kumkumala.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                    <p>  kumkumala</p>
+                  </div>
+                  <div class="audio">
+                      <audio  class="audio-element" src="songs/[iSongs.info] 01 - Kumkumala.mp3" controls></audio>
+                  </div>
+                    </div>
+                    <div class="songs">
+                      <div class="image">
+                    <img src="https://naasongslyrics.com/wp-content/uploads/2021/08/taxiwala_ringtones-and-bgm-300x210.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                    <p> maate vind.. </p>
+                  </div>
+                  <div class="audio">
+                      <audio  class="audio-element" src="songs/[iSongs.info] 01 - Maate Vinadhuga.mp3" controls></audio>
+                  </div>
+                    </div>
+                    <div class="songs">
+                      <div class="image">
+                    <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/srch_believe/music/3616843996652/1643262910/srch_believe_A10320WT042397655S.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                    <p> Amma song</p>
+                  </div>
+                  <div class="audio">
+                      <audio  class="audio-element"
+                      src="songs/[iSongs.info] 01 - Amma Song.mp3" controls></audio>
+                  </div>
+                    </div>
+                    <div class="songs">
+                      <div class="image">
+                    <img src="https://www.koimoi.com/wp-content/new-galleries/2022/02/mahesh-babu-keerthy-sureshs-romantic-number-kalavathi-tumbling-records-01.jpg" alt="Song 1">
+                  </div>
+                  <div class="name">
+                    <p>kavalathi</p>
+                  </div>
+                  <div class="audio">
+                      <audio  class="audio-element" src="songs/Kalaavathi.mp3" controls></audio>
+                  </div>
+                    </div>
+                  </div>
+                  </div>
+          
+              </div>
+</div>
+<div class="hide5" id="myDIV5">
+<div class="Lovesongs">
+              <div class="list-main2">
+                  <p class="p1">Ram Miriyala</p>
+                  <div class="main-list2">
+                      <div class="songs">
+                          <div class="image">
+                              <img src="https://i.ytimg.com/vi/u_2ariWW8K0/hqdefault.jpg" alt="Song 1">
+                          </div>
+                          <div class="name">
+                              <p>Thattukoled.</p>
+                          </div>
+                          <div class="audio">
+                              <audio class="audio-element" src="songs/[iSongs.info] 01 - Thattukolede.mp3" controls></audio>
+                          </div>
+                      </div>
+                      
+                      <div class="songs">
+                          <div class="image">
+                        <img src="https://img.wynk.in/unsafe/200x200/filters:no_upscale():strip_exif():format(jpg)/http://s3.ap-south-1.amazonaws.com/wynk-music-cms/srch_adityamusic/2023-02/20/09-34/Balagam.jpg" alt="Song 1">
+                      </div>
+                      <div class="name">
+                        <p>potti  pilla</p>
+                      </div>
+                      <div class="audio">
+                          <audio  class="audio-element" src="songs/[iSongs.info] 02 - Potti Pilla.mp3" controls></audio>
+                      </div>
+                        </div>
+                        <div class="songs">
+                          <div class="image">
+                        <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/Raghuvaran%20B%20Tech.JPG" alt="Song 1">
+                      </div>
+                      <div class="name">
+                        <p>chudandisaa.</p>
+                      </div>
+                      <div class="audio">
+                          <audio  class="audio-element" src="songs/[iSongs.info] 01 - Chudandi Saaru.mp3" controls></audio>
+                      </div>
+                        </div>
+                        <div class="songs">
+                          <div class="image">
+                        <img src="https://i.ytimg.com/vi/G50s92nDHaA/maxresdefault.jpg" alt="Song 1">
+                      </div>
+                      <div class="name">
+                        <p> mowa  bro </p>
+                      </div>
+                      <div class="audio">
+                          <audio  class="audio-element" src="songs/[iSongs.info] 02 - Mawa Bro.mp3" controls></audio>
+                      </div>
+                        </div>
+                        <div class="songs">
+                          <div class="image">
+                        <img src="https://i.ytimg.com/vi/cePCCi5k7WE/maxresdefault.jpg" alt="Song 1">
+                      </div>
+                      <div class="name">
+                        <p> Neeve na..</p>
+                      </div>
+                      <div class="audio">
+                          <audio  class="audio-element"
+                          src="songs/[iSongs.info] 01 - Neeve.mp3" controls></audio>
+                      </div>
+                        </div>
+                        <div class="songs">
+                          <div class="image">
+                        <img src="https://www.thestatesman.com/wp-content/uploads/2022/01/Kichcha-Sudeepas-Vikrant-Rona-release-postponed-1024x683.jpg" alt="Song 1">
+                      </div>
+                      <div class="name">
+                        <p>Rakkamma</p>
+                      </div>
+                      <div class="audio">
+                          <audio  class="audio-element" src="songs/[iSongs.info] 01 - Ra Ra Rakkammaa.mp3" controls></audio>
+                      </div>
+                        </div>
+                      </div>
+                      </div>
+              
+                  </div>
+</div>
+<div class="hide6" id="myDIV8">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">BOLLYWOOD</p>
+<div class="main-list2">
+    <div class="songs">
+        <div class="image">
+            <img src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2023/07/aliaaa-1689071479.jpg" alt="Song 1">
+        </div>
+        <div class="name">
+            <p>WHAT JHUMKA</p>
+        </div>
+        <div class="audio">
+            <audio class="audio-element" src="songs/128-What Jhumka - Rocky Aur Rani Kii Prem Kahaani 128 Kbps.mp3" controls></audio>
+        </div>
+    </div>
+    
+    <div class="songs">
+        <div class="image">
+      <img src="https://ghantalele.com/uploads/thumbs/thumb-78/38825_5.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>BESHARAM</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Besharam Rang(PagalWorld.cm).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2023/02/Tere-Pyaar-Mein-Song-Tu-Jhooti-Main-Makkaar-Ranbir-Kapoor-Shraddha-Kapoor1.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p> TERE PYAAR</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Tere Pyar Mein(PagalWorld.cm).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://i.ytimg.com/vi/g5WZLO8BAC8/maxresdefault.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p> TERE VAASTE </p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Tere Vaaste(PagalWorld.cm).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://img1.hotstarext.com/image/upload/f_auto,t_hcdl/sources/r1/cms/prod/3069/1323069-h-055a4582d7e0" alt="Song 1">
+    </div>
+    <div class="name">
+      <p> DANCE KA</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element"
+        src="songs/Dance ka Bhoot(PagalWorld.cm).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://ostpk.com/wp-content/uploads/2022/08/Deva-Deva-Mp3-Song-Download-Arijit-Singh.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>DEVA DEVA</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Deva Deva(PagalWorld.cm).mp3" controls></audio>
+    </div>
+      </div>
+    </div>
+    </div>
+
+</div>
+</div>
+<div class="hide7" id="myDIV9">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">TAMIL</p>
+<div class="main-list2">
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/eKkJm0jeUds/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>TUM TUM</p>
+</div>
+<div class="audio">
+<audio class="audio-element" src="songs/Mala Tum Tum(PagalWorld.cm).mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/6VxtEeub8UE/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>NAME JOHN</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/His Name Is John Song Chiyaan Vikram.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/CUHb9wRJTUo/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> kUDUKU...</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Kudukku-Vineeth-Sreenivasan.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/srch_sonymusic/music/srch_sonymusic_A10328E0007586557P.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> AALUMA... </p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Aaluma-Doluma.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/60ltnyUq02o/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> RANJITHAME</p>
+</div>
+<div class="audio">
+<audio  class="audio-element"
+src="songs/Ranjithame-MassTamilan.dev.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://a10.gaanacdn.com/gn_img/song/DwPKOkBKqV/PKOB98aabq/size_m_1640237451.webp" alt="Song 1">
+</div>
+<div class="name">
+<p>ADIYEE</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Adiye-MassTamilan.fm.mp3" controls></audio>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="hide8" id="myDIV10">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">OLD LIST</p>
+<div class="main-list2">
+    <div class="songs">
+        <div class="image">
+            <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/srch_adityamusic_INA090409930.jpg" alt="Song 1">
+        </div>
+        <div class="name">
+            <p>CHIITI NADUMU</p>
+        </div>
+        <div class="audio">
+            <audio class="audio-element" src="songs/Chitti Nadumune-SenSongsMp3.Co.mp3" controls></audio>
+        </div>
+    </div>
+    
+    <div class="songs">
+        <div class="image">
+      <img src="data:image/jpeg;base64,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" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>ADIRE ADIRE</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/[iSongs.info] 07 - Adire Adire.mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://findsongslyrics.com/wp-content/uploads/2022/06/Varsham-Movie-Songs-Lyrics-FindSongsLyrics.com_.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p> NUVVOSTHAN.</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/[iSongs.info] 01 - Nuvvosthanante.mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://i.ytimg.com/vi/1U1tx_nl4tM/mqdefault.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p> JORSEY JOSREY </p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/[iSongs.info] 04 - Jorsey.mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/srch_adityamusic_INA090811624.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>VODHARA SODHA..</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element"
+        src="songs/Voddura-Sodhara-S.P.-Balasubrahmanyam.mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://i.ytimg.com/vi/KcbmbnRX-nU/maxresdefault.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>ATHEY NANNU</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/[iSongs.info] 06 - Adhey Nannu.mp3" controls></audio>
+    </div>
+      </div>
+    </div>
+    </div>
+
+</div>
+</div>
+<div class="hide9" id="myDIV11">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">SP BALU GARU</p>
+<div class="main-list2">
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/jwqjAaRcZBo/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>NAA MANASUNE</p>
+</div>
+<div class="audio">
+<audio class="audio-element" src="songs/[iSongs.info] 05 - Na Manasune.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/1527511197/srch_adityamusic_INA091815955.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>PREMA PREMA</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Prema O Premaa.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/9x_LQDyNa7A/hqdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> NA CHELLI ROJA</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/[iSongs.info] 03 - Naa Cheli Rojave.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/jYOQCBTstZM/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>  ANDAMAINA PRE. </p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/[iSongs.info] 04 - Andhamaina Premarani.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://3.bp.blogspot.com/-l3VgFmLknuQ/Wqy-3YqqB2I/AAAAAAAABXE/E8LbYM8IaR02sIY80YoV6vFTTfpIvZ5kgCLcBGAs/s1600/Snehithudaa%2BTelugu%2BSong%2BLyrics%2B-%2BSakhi%2B%25282000%2529.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> NAGILA NAGILA</p>
+</div>
+<div class="audio">
+<audio  class="audio-element"
+src="songs/Nagila-Nagila.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://4.bp.blogspot.com/-yqaaUNl63pw/WAOPQn-6KTI/AAAAAAAACWw/bItBQmqmq0cAK9dVyqVt5OT60IuUUuLcQCLcB/w1200-h630-p-k-no-nu/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>jabilli</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/[iSongs.info] Jabilli Kosam (Male).mp3" controls></audio>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hide10" id="myDIV12">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">DSP</p>
+<div class="main-list2">
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/xOYPec1HuvM/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>FEEL MY LOVE</p>
+</div>
+<div class="audio">
+<audio class="audio-element" src="songs/[iSongs.info] 05 - Feel My Love.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i2.wp.com/i.ytimg.com/vi/jGetqo_SC9U/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>EYY BIDDA...</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Eyy Bidda Idhi Naa Adaa.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/C70GJYVoZ4Y/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>SAMI SAMI..</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Saami Saami.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://newsmeter.in/h-upload/2022/12/31/336054-whatsapp-image-2022-12-31-at-31355-pm.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> POONAKALU.. </p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Poonakaalu Loading.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://img.wynk.in/unsafe/320x180/top/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/srch_adityamusic_INA091213448.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p> ME INTIKI MUN..</p>
+</div>
+<div class="audio">
+<audio  class="audio-element"
+src="songs/[iSongs.info] 05 - Mee Intiki Mundhu.mp3" controls></audio>
+</div>
+</div>
+<div class="songs">
+<div class="image">
+<img src="https://i.ytimg.com/vi/D8PAezVp3Sw/maxresdefault.jpg" alt="Song 1">
+</div>
+<div class="name">
+<p>EK BAAR</p>
+</div>
+<div class="audio">
+<audio  class="audio-element" src="songs/Ek Baar - SenSongsMp3.Co.mp3" controls></audio>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>       
+<div class="hide11" id="myDIV13">
+<div class="Lovesongs">
+<div class="list-main2">
+<p class="p1">JUSTIN BIEBER</p>
+<div class="main-list2">
+    <div class="songs">
+        <div class="image">
+            <img src="https://pagaliworld.com/siteuploads/thumb/sft8/3743_4.jpg" alt="Song 1">
+        </div>
+        <div class="name">
+            <p>STAY........</p>
+        </div>
+        <div class="audio">
+            <audio class="audio-element" src="songs/Stay(PagalWorld).mp3" controls></audio>
+        </div>
+    </div>
+    
+    <div class="songs">
+        <div class="image">
+      <img src="https://1.bp.blogspot.com/-tb2peB_LB30/XViUg2myiWI/AAAAAAAABB8/GlpF-qJUNi4qbSkbuabnzx2rGESOUtFuwCLcBGAs/s1600/let%2Bme%2Blove%2Byou.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>LET ME LOV </p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Let Me Love You-(DJMaza).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://a10.gaanacdn.com/images/albums/22/3164522/crop_480x480_3164522.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p> LOVE ME...</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Love-Me---Justin-Bieber(PagalWorld).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlxu0rmMVk5q1HIVPzn65DTtoap41ANz1L4nUf4SACFlKr1GJ0FW2_8xpnuBltr-w5B0Q&usqp=CAU" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>  BABY......</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Baby(PagalWorld).mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://i.ytimg.com/vi/xYoxBQ03wUQ/maxresdefault.jpg" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>BOYFRIEND</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element"
+        src="songs/Justin-Bieber-Boyfriend-Official-Music-Video.mp3" controls></audio>
+    </div>
+      </div>
+      <div class="songs">
+        <div class="image">
+      <img src="https://i.ytimg.com/vi/8TrbhpRgsmA/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGwgbChsMA8=&rs=AOn4CLB9PAqB0FtGlDxNIssGlt03SMhsVw" alt="Song 1">
+    </div>
+    <div class="name">
+      <p>SORRY</p>
+    </div>
+    <div class="audio">
+        <audio  class="audio-element" src="songs/Justin_Bieber_-_Sorry_(Jesusful.com).mp3" controls></audio>
+    </div>
+      </div>
+    </div>
+    </div>
+
+</div>
+</div>  
+</div>
+</div>
+</div>
+</div>
+    <!-- j query script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- java script -->
+<script> 
+// j.query script for sidebar active
+$(".arrow").click(function () {
+            $(".navbar").toggleClass("active");
+        });
+$(".menu > ul > li ").click(function(e){
+    $(this).siblings().removeClass("active");
+    $(this).toggleClass("active")
+    $(this).find("ul").slideToggle();
+})
+// greetings script
+    var mydate = new Date();
+    var mytime = mydate.getHours();
+    var greet1;
+    if (mytime <= 12)
+        greet1 = "Good Morning";
+    else if (mytime <= 16)
+        greet1 = "Good Afternoon";
+    else
+        greet1 = "Good Evening";
+document.getElementById("greet").innerHTML = greet1;
+// script for slide the popular list
+        let left_scroll = document.getElementById("left_scroll");
+        let right_scroll = document.getElementById("right_scroll");
+        let toplist = document.getElementById("top-list");
+           left_scroll.addEventListener('click', () => {
+            toplist.scrollLeft -= 330;
+        });
+           right_scroll.addEventListener('click', () => {
+            toplist.scrollLeft += 330;
+        });
+        // if audio pause and play
+        const audioElements = document.querySelectorAll('.audio-element');
+            audioElements.forEach(audio => {
+        audio.addEventListener('play', function() {
+        pauseOtherAudios(audio);
+    });
+});
+            function pauseOtherAudios(currentAudio) {
+    audioElements.forEach(audio => {
+        if (audio !== currentAudio) {
+            audio.pause();
+        }
+    });
+}
+    //  script for hide and show
+       var toggleLinks = document.getElementsByClassName("toggle-link");
+          for (var i = 0; i < toggleLinks.length; i++) {
+    toggleLinks[i].addEventListener("click", function() {
+    var divs = document.querySelectorAll("[id^='myDIV']");
+      for (var j = 0; j < divs.length; j++) {
+        divs[j].style.display = "none";
+      }
+      
+    
+      var targetDivId = this.getAttribute("data-target");
+      var targetDiv = document.getElementById(targetDivId);
+      targetDiv.style.display = "block";
+    });
+  }
+       var toggleLinks1 = document.getElementsByClassName("toggle-link1");
+          for (var i = 0; i < toggleLinks1.length; i++) {
+    toggleLinks1[i].addEventListener("click", function() {
+     
+      var divs = document.querySelectorAll("[id^='mDIV']");
+      for (var j = 0; j < divs.length; j++) {
+        divs[j].style.display = "none";
+      }
+      
+    
+      var targetDivId = this.getAttribute("data-target");
+      var targetDiv = document.getElementById(targetDivId);
+      targetDiv.style.display = "block";
+    });
+  }
+  // color chnage
+       const bbt = document.getElementById("bbt");
+         bbt.addEventListener("change",() =>{
+  document.body.classList.toggle("dark")
+ 
+})
+</script>
+</body>
+</html>
